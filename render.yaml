@@ -5,17 +5,17 @@ services:
     plan: free
     region: singapore
     buildCommand: npm install
-    startCommand: npm start
+    startCommand: npm run render-start
     envVars:
       - key: NODE_ENV
         value: production
-      - key: MONGODB_URI
-        fromDatabase:
-          name: quantum-trading-db
-          property: connectionString
+      - key: NODE_VERSION
+        value: 18.17.0
     healthCheckPath: /health
+    autoDeploy: yes
 
 databases:
   - name: quantum-trading-db
+    databaseName: quantum_trading
     plan: free
     region: singapore
