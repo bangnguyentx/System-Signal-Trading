@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tool Trading Pro - Auto Signals</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-atom"></i>
+                    </div>
+                    <div class="logo-text">
+                        <h1>Tool Trading Pro</h1>
+                        <p>Auto Signals • Real-time Analysis • Professional</p>
+                    </div>
+                </div>
+                <div class="header-stats">
+                    <div class="stat-item">
+                        <span class="stat-label">Active Signals</span>
+                        <span class="stat-value" id="activeCount">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Today's Win Rate</span>
+                        <span class="stat-value" id="winRate">0%</span>
+                    </div>
+                    <div class="status-indicator">
+                        <span class="status-dot active"></span>
+                        <span>Auto Scanning</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="navigation">
+            <div class="nav-container">
+                <button class="nav-btn active" data-tab="signals">
+                    <i class="fas fa-satellite-dish"></i>
+                    Tín Hiệu Live
+                </button>
+                <button class="nav-btn" data-tab="statistics">
+                    <i class="fas fa-chart-bar"></i>
+                    Thống Kê
+                </button>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Signals Tab -->
+            <div id="signals-tab" class="tab-content active">
+                <!-- Active Signals -->
+                <section class="section-card">
+                    <div class="section-header">
+                        <h2><i class="fas fa-fire"></i> Tín Hiệu Đang Chạy</h2>
+                        <div class="live-badge">
+                            <i class="fas fa-circle"></i>
+                            LIVE
+                        </div>
+                    </div>
+                    <div class="table-container">
+                        <table class="signals-table">
+                            <thead>
+                                <tr>
+                                    <th>Coin</th>
+                                    <th>Long/Short</th>
+                                    <th>Entry</th>
+                                    <th>TP</th>
+                                    <th>SL</th>
+                                    <th>Lí Do</th>
+                                    <th>Confidence</th>
+                                    <th>Thời Gian</th>
+                                    <th>P&L</th>
+                                    <th>Trạng Thái</th>
+                                </tr>
+                            </thead>
+                            <tbody id="activeSignalsBody">
+                                <!-- Dynamic content -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Signal History -->
+                <section class="section-card">
+                    <div class="section-header">
+                        <h2><i class="fas fa-history"></i> Lịch Sử Tín Hiệu (24H)</h2>
+                    </div>
+                    <div class="table-container">
+                        <table class="signals-table">
+                            <thead>
+                                <tr>
+                                    <th>Coin</th>
+                                    <th>Long/Short</th>
+                                    <th>Entry</th>
+                                    <th>TP</th>
+                                    <th>SL</th>
+                                    <th>Exit</th>
+                                    <th>Kết Quả</th>
+                                    <th>Lợi Nhuận</th>
+                                    <th>RR</th>
+                                    <th>Thời Gian</th>
+                                </tr>
+                            </thead>
+                            <tbody id="historySignalsBody">
+                                <!-- Dynamic content -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Statistics Tab -->
+            <div id="statistics-tab" class="tab-content">
+                <!-- Today's Summary -->
+                <section class="section-card">
+                    <div class="section-header">
+                        <h2><i class="fas fa-chart-line"></i> Tổng Kết Hôm Nay</h2>
+                        <div class="date-display" id="todayDate"></div>
+                    </div>
+                    <div class="stats-grid">
+                        <div class="stat-card success">
+                            <div class="stat-icon">
+                                <i class="fas fa-money-bill-wave"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-value" id="totalProfit">0%</div>
+                                <div class="stat-label">Tổng Lợi Nhuận</div>
+                            </div>
+                        </div>
+                        <div class="stat-card primary">
+                            <div class="stat-icon">
+                                <i class="fas fa-signal"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-value" id="totalSignals">0</div>
+                                <div class="stat-label">Tổng Tín Hiệu</div>
+                            </div>
+                        </div>
+                        <div class="stat-card success">
+                            <div class="stat-icon">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-value" id="winSignals">0</div>
+                                <div class="stat-label">Tín Hiệu Thắng</div>
+                            </div>
+                        </div>
+                        <div class="stat-card danger">
+                            <div class="stat-icon">
+                                <i class="fas fa-times-circle"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-value" id="loseSignals">0</div>
+                                <div class="stat-label">Tín Hiệu Thua</div>
+                            </div>
+                        </div>
+                        <div class="stat-card warning">
+                            <div class="stat-icon">
+                                <i class="fas fa-spinner"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-value" id="runningSignals">0</div>
+                                <div class="stat-label">Đang Chạy</div>
+                            </div>
+                        </div>
+                        <div class="stat-card info">
+                            <div class="stat-icon">
+                                <i class="fas fa-trophy"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-value" id="winRateToday">0%</div>
+                                <div class="stat-label">Tỉ Lệ Thắng</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Performance Chart -->
+                <section class="section-card">
+                    <div class="section-header">
+                        <h2><i class="fas fa-chart-bar"></i> Hiệu Suất 7 Ngày</h2>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="performanceChart"></canvas>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="contact-section">
+                    <h3>Liên Hệ Admin</h3>
+                    <div class="contact-links">
+                        <a href="https://m.facebook.com/bang.nguyen.17040/" target="_blank" class="contact-link">
+                            <i class="fab fa-facebook"></i>
+                            Facebook: Bằng Nguyễn
+                        </a>
+                        <a href="https://t.me/HOANGDUNGG789" target="_blank" class="contact-link">
+                            <i class="fab fa-telegram"></i>
+                            Telegram: Hoàng Dũng
+                        </a>
+                    </div>
+                </div>
+                <div class="copyright">
+                    <p>© Copyright by Bằng Nguyễn</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/ui-manager.js"></script>
+    <script src="js/realtime.js"></script>
+</body>
+</html>
