@@ -6,17 +6,21 @@
   "scripts": {
     "start": "node server/server.js",
     "dev": "nodemon server/server.js",
-    "build": "echo 'Building Quantum Trading Pro...'"
+    "build": "echo 'Building Quantum Trading Pro...'",
+    "test": "echo 'No tests specified'",
+    "render-start": "node server/server.js"
   },
   "dependencies": {
     "express": "^4.18.2",
     "mongoose": "^7.5.0",
     "node-cron": "^3.0.2",
     "axios": "^1.5.0",
-    "socket.io": "^4.7.2",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1"
   },
+  "keywords": ["trading", "crypto", "signals", "binance"],
+  "author": "Bằng Nguyễn",
+  "license": "MIT",
   "engines": {
     "node": ">=18.0.0"
   }
