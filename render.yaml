@@ -1,7 +1,21 @@
 services:
   - type: web
-    name: trading-signals-web
-    env: python
+    name: quantum-trading-pro
+    env: node
     plan: free
-    buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn app:app --bind 0.0.0.0:$PORT
+    region: singapore
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGODB_URI
+        fromDatabase:
+          name: quantum-trading-db
+          property: connectionString
+    healthCheckPath: /health
+
+databases:
+  - name: quantum-trading-db
+    plan: free
+    region: singapore
